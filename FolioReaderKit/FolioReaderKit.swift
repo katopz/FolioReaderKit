@@ -22,17 +22,22 @@ internal let isPhone5 = (UIScreen.mainScreen().bounds.size.height == 568)
 /**
 Present a Folio Reader for a Parent View Controller.
 */
-public func presentReader(parentViewController parentViewController: UIViewController, withEpubPath epubPath: String, andConfig config: FolioReaderConfig, animated: Bool = true) {
+public func presentReader(parentViewController parentViewController: UIViewController, withEpubPath epubPath: String, andConfig config: FolioReaderConfig, animated: Bool = true, completion:(() -> Void)? = nil) {
     let reader = FolioReaderContainer(config: config, epubPath: epubPath)
-    parentViewController.presentViewController(reader, animated: animated, completion: nil)
+    parentViewController.presentViewController(reader, animated: animated, completion: completion)
 }
 
 /**
 Present a Folio Reader for a Parent View Controller.
 */
-public func presentReader(parentViewController parentViewController: UIViewController, andConfig config: FolioReaderConfig, animated: Bool = true) {
+public func presentReader(parentViewController parentViewController: UIViewController, andConfig config: FolioReaderConfig, animated: Bool = true, completion:(() -> Void)? = nil) {
     let reader = FolioReaderContainer(config: config)
-    parentViewController.presentViewController(reader, animated: animated, completion: nil)
+    parentViewController.presentViewController(reader, animated: animated, completion: completion)
+}
+
+public func getReader(withEpubPath epubPath: String, andConfig config: FolioReaderConfig, animated: Bool = true, completion:(() -> Void)? = nil) -> UIViewController {
+    let reader = FolioReaderContainer(config: config, epubPath: epubPath)
+    return reader
 }
 
 extension UIColor {
