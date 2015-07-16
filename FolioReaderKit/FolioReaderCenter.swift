@@ -53,7 +53,7 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
         layout.sectionInset = UIEdgeInsetsZero
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = UICollectionViewScrollDirection.Vertical
+        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         
         // CollectionView
         collectionView = UICollectionView(frame: screenBounds, collectionViewLayout: layout)
@@ -123,6 +123,13 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
         html = html?.stringByReplacingOccurrencesOfString("</head>", withString: toInject)
         
         cell.loadHTMLString(html, baseURL: NSURL(fileURLWithPath: resource.fullHref.stringByDeletingLastPathComponent))
+        
+        /*
+        cell.webView.scrollView.alpha = 0
+        cell.webView.scrollView.animateWithDuration(0.64, delay: 0, options:.CurveEaseOut, animations: {
+            self.alpha = 1
+            }, completion: nil)
+        */
         
         return cell
     }
@@ -279,4 +286,8 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
         return count
     }
     
+    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let page = cell as! FolioReaderPage
+        page.webView.loadHTMLString("", baseURL: nil)
+    }
 }
