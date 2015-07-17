@@ -48,6 +48,7 @@
 		99EF28741AD59013007848FF /* FolioReaderKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28731AD59013007848FF /* FolioReaderKit.swift */; };
 		99EF28761AD5905A007848FF /* FolioReaderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28751AD5905A007848FF /* FolioReaderConfig.swift */; };
 		99EF28781AD594E1007848FF /* FolioReaderCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28771AD594E1007848FF /* FolioReaderCenter.swift */; };
+		E6ECE15C1B58F26C0089E7B9 /* UIWebView+KZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ECE14B1B58F26C0089E7B9 /* UIWebView+KZ.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		99EF28731AD59013007848FF /* FolioReaderKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderKit.swift; sourceTree = "<group>"; };
 		99EF28751AD5905A007848FF /* FolioReaderConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderConfig.swift; sourceTree = "<group>"; };
 		99EF28771AD594E1007848FF /* FolioReaderCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderCenter.swift; sourceTree = "<group>"; };
+		E6ECE14B1B58F26C0089E7B9 /* UIWebView+KZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+KZ.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				999ABFEC1ADED31700E3871C /* FolioReaderSidePanel.swift */,
 				99EE55751AFBD759001BE607 /* FolioReaderSidePanelCell.swift */,
 				99D5A9A31AD80628001C747A /* FolioReaderPage.swift */,
+				E6ECE13A1B58F26C0089E7B9 /* swift-handy */,
 				9943382E1AF11D1D00AC774E /* EpubCore */,
 				9943381B1AE95F9400AC774E /* Resources */,
 				99EF281A1AD588D6007848FF /* Supporting Files */,
@@ -255,6 +258,15 @@
 				99EF28281AD588D6007848FF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6ECE13A1B58F26C0089E7B9 /* swift-handy */ = {
+			isa = PBXGroup;
+			children = (
+				E6ECE14B1B58F26C0089E7B9 /* UIWebView+KZ.swift */,
+			);
+			name = "swift-handy";
+			path = "../../arn/libs/swift-handy";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +413,7 @@
 				994338321AF1203600AC774E /* FRResource.swift in Sources */,
 				999ABFEB1ADED11700E3871C /* FolioReaderContainer.swift in Sources */,
 				99EE55761AFBD759001BE607 /* FolioReaderSidePanelCell.swift in Sources */,
+				E6ECE15C1B58F26C0089E7B9 /* UIWebView+KZ.swift in Sources */,
 				99EE55741AFAAE17001BE607 /* FRSpine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

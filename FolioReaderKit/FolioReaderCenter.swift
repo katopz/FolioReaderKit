@@ -100,6 +100,9 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
         return totalPages
     }
     
+    private var _currentWebView:UIWebView?
+    private var _currentNoteTextView:UITextView?
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FolioReaderPage
         
@@ -131,8 +134,127 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
             }, completion: nil)
         */
         
+        /* didn't work
+        // Plug tab handler
+        let targetGesture = UITapGestureRecognizer(target:self, action:"handleTap")
+        targetGesture.numberOfTapsRequired = 1;
+        cell.webView.addGestureRecognizer(targetGesture)
+        
+        _currentWebView = cell.webView
+        */
+        
+        _currentWebView = cell.webView
+        
+        //_currentWebView?.scrollView.touchesBegan(<#T##touches: Set<UITouch>##Set<UITouch>#>, withEvent: <#T##UIEvent?#>)
+        
+        let menu = UIMenuController.sharedMenuController()
+        menu.menuItems = [UIMenuItem(title: "Note", action: "takeNote")]
+        menu.setMenuVisible(true, animated: true)
         return cell
     }
+    
+    func takeNote() {
+        let selectedString = _currentWebView?.stringByEvaluatingJavaScriptFromString("window.getSelection().toString()")
+        print("selectedString:" + selectedString!)
+        
+        print("position:\(_currentWebView?.scrollView.contentOffset.x)")
+        print("position:\(_currentWebView?.scrollView.contentOffset.y)")
+        
+        /* Fetch the current selection and its pixel location */
+        let selected = _currentWebView?.stringByEvaluatingJavaScriptFromString("window.getSelection().toString();") ?? ""
+        let positionString = _currentWebView?.stringByEvaluatingJavaScriptFromString("(function () {\n"
+        // Fetch the selection
+        + "var sel = window.getSelection();"
+        + "var node = sel.anchorNode;"
+        
+        // Insert a dummy node that we'll use to find the selection position
+        + "var range = sel.getRangeAt(0);"
+        + "var dummyNode = document.createElement(\"span\");"
+        + "range.insertNode(dummyNode);"
+        
+        // Define the functions we'll use to calculate the dummy node's position
+        + "function Point(x, y) {"
+        + "this.x = x;"
+        + "this.y = y;"
+        + "}"
+        
+        + "function getPoint (o) {"
+        + "var oX = 0;"
+        + "var oY = 0;"
+        + "if (o.offsetParent) {"
+        + "do {"
+        + "oX += o.offsetLeft;"
+        + "oY += o.offsetTop;"
+        + "o=o.offsetParent;"
+        + "} while (o)"
+        + "} else if (o.x) {"
+        + "oX += o.x;"
+        + "oY += o.y;"
+        + "}"
+        + "return new Point(oX, oY);"
+        + "}"
+        
+        // Get the dummy node's position and drop the node
+        + "var p = getPoint(dummyNode);"
+        + "dummyNode.parentNode.removeChild(dummyNode);"
+        
+        // Offset for the current window offset.
+        + "p.x -= window.pageXOffset;"
+        + "p.y -= window.pageYOffset;"
+        
+        // TODO - determine the text line height and offset the arrow accordingly?
+        
+        // Return the coordinates as a CGPointFromString() compatible {x, y} string
+        + "return \"{\" + p.x + \", \" + p.y + \"}\";"
+        + "})();")
+        var position = CGPointFromString(positionString!)
+        position = self.view.convertPoint(position, fromView: _currentWebView)
+        
+        /* Create our view controllers */
+        /*
+        WNDefinitionViewController *vc = [[[WNDefinitionViewController alloc] initWithWord: selected
+        dataSource: _dataSource] autorelease];
+        vc.delegate = self;
+        
+        UINavigationController *navVC = [[[UINavigationController alloc] initWithRootViewController: vc] autorelease];
+        navVC.navigationBar.barStyle = UIBarStyleBlack;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            [self presentModalViewController: navVC animated: YES];
+            
+        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: navVC];
+            popover.popoverContentSize = CGSizeMake(320, 480);
+            
+            [popover presentPopoverFromRect: CGRectMake(position.x, position.y, 0.0f, 0.0f)
+                inView: self.view
+                permittedArrowDirections: UIPopoverArrowDirectionAny
+                animated: YES];
+        }
+        */
+        print(position)
+        
+        // try add something
+        _currentNoteTextView = UITextView(frame:  CGRect(x: position.x, y: position.y + 16, width: 240, height: 64))
+        _currentNoteTextView!.text = selected + "\n"
+        _currentNoteTextView!.backgroundColor = UIColor.yellowColor()
+        _currentWebView?.scrollView.addSubview(_currentNoteTextView!)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        _currentNoteTextView?.removeFromSuperview()
+    }
+    
+    func textFieldShouldReturn(textField:UITextField) {
+        print("textFieldShouldReturn:")
+    }
+    
+    /*
+    func handleTap() {
+        print("contentOffset:\(_currentWebView?.scrollView.contentOffset)")
+        print("selectedString:" + (_currentWebView?.selectedString)!)
+    }
+    */
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(pageWidth, pageHeight)
@@ -219,6 +341,8 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
     // MARK: - ScrollView Delegate
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        print("scrollViewWillBeginDragging")
+
         isScrolling = true
         
 //        if scrollView is UICollectionView {
@@ -227,16 +351,21 @@ class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("scrollViewDidScroll")
+        
 //        if scrollView is UICollectionView {
             scrollDirection = scrollView.contentOffset.y < pointNow.y ? .Down : .Up
 //        }
     }
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        print("scrollViewWillBeginDecelerating")
 //        println("decelerate")
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        print("scrollViewDidEndDecelerating")
+        
         isScrolling = false
         
         if scrollView is UICollectionView {
