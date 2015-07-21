@@ -68,8 +68,9 @@ class FolioReaderContainer: UIViewController,  UIGestureRecognizerDelegate, Foli
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         centerViewController = FolioReaderCenter()
+        centerViewController.note = readerConfig.note
         centerViewController.folioReaderContainer = self
         centerNavigationController = UINavigationController(rootViewController: centerViewController)
         centerNavigationController.setNavigationBarHidden(true, animated: false)

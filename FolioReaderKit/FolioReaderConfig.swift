@@ -15,6 +15,8 @@ public class FolioReaderConfig: NSObject {
     public var menuSeparatorColor: UIColor!
     public var menuTextColor: UIColor!
     
+    public var note: PSNote?
+    
     // MARK: - Init with defaults
     
     public override init() {
@@ -23,6 +25,9 @@ public class FolioReaderConfig: NSObject {
         self.menuBackgroundColor = UIColor(rgba: "#F5F5F5")
         self.menuSeparatorColor = UIColor(rgba: "#D7D7D7")
         self.menuTextColor = UIColor(rgba: "#575757")
+        
+        // re
+        note = PSNote()
         
         super.init()
     }

@@ -48,6 +48,8 @@
 		99EF28741AD59013007848FF /* FolioReaderKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28731AD59013007848FF /* FolioReaderKit.swift */; };
 		99EF28761AD5905A007848FF /* FolioReaderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28751AD5905A007848FF /* FolioReaderConfig.swift */; };
 		99EF28781AD594E1007848FF /* FolioReaderCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF28771AD594E1007848FF /* FolioReaderCenter.swift */; };
+		E6E969201B5CF2330003F8E4 /* PSAnnotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691A1B5CF2330003F8E4 /* PSAnnotationViewController.swift */; };
+		E6E969211B5CF2330003F8E4 /* PSNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691E1B5CF2330003F8E4 /* PSNote.swift */; };
 		E6ECE15C1B58F26C0089E7B9 /* UIWebView+KZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ECE14B1B58F26C0089E7B9 /* UIWebView+KZ.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +108,8 @@
 		99EF28731AD59013007848FF /* FolioReaderKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderKit.swift; sourceTree = "<group>"; };
 		99EF28751AD5905A007848FF /* FolioReaderConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderConfig.swift; sourceTree = "<group>"; };
 		99EF28771AD594E1007848FF /* FolioReaderCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioReaderCenter.swift; sourceTree = "<group>"; };
+		E6E9691A1B5CF2330003F8E4 /* PSAnnotationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSAnnotationViewController.swift; sourceTree = "<group>"; };
+		E6E9691E1B5CF2330003F8E4 /* PSNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSNote.swift; sourceTree = "<group>"; };
 		E6ECE14B1B58F26C0089E7B9 /* UIWebView+KZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+KZ.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +230,7 @@
 				99EE55751AFBD759001BE607 /* FolioReaderSidePanelCell.swift */,
 				99D5A9A31AD80628001C747A /* FolioReaderPage.swift */,
 				E6ECE13A1B58F26C0089E7B9 /* swift-handy */,
+				E6E9691F1B5CF2330003F8E4 /* PSAnnotation */,
 				9943382E1AF11D1D00AC774E /* EpubCore */,
 				9943381B1AE95F9400AC774E /* Resources */,
 				99EF281A1AD588D6007848FF /* Supporting Files */,
@@ -258,6 +263,40 @@
 				99EF28281AD588D6007848FF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6E9691B1B5CF2330003F8E4 /* c */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9691A1B5CF2330003F8E4 /* PSAnnotationViewController.swift */,
+			);
+			path = c;
+			sourceTree = "<group>";
+		};
+		E6E9691C1B5CF2330003F8E4 /* m */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = m;
+			sourceTree = "<group>";
+		};
+		E6E9691D1B5CF2330003F8E4 /* v */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = v;
+			sourceTree = "<group>";
+		};
+		E6E9691F1B5CF2330003F8E4 /* PSAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9691B1B5CF2330003F8E4 /* c */,
+				E6E9691C1B5CF2330003F8E4 /* m */,
+				E6E9691D1B5CF2330003F8E4 /* v */,
+				E6E9691E1B5CF2330003F8E4 /* PSNote.swift */,
+			);
+			name = PSAnnotation;
+			path = ../../arn/libs/PSAnnotation;
 			sourceTree = "<group>";
 		};
 		E6ECE13A1B58F26C0089E7B9 /* swift-handy */ = {
@@ -401,6 +440,7 @@
 				994338301AF11F4D00AC774E /* FRResources.swift in Sources */,
 				99EF28781AD594E1007848FF /* FolioReaderCenter.swift in Sources */,
 				99EF28761AD5905A007848FF /* FolioReaderConfig.swift in Sources */,
+				E6E969211B5CF2330003F8E4 /* PSNote.swift in Sources */,
 				99EF28741AD59013007848FF /* FolioReaderKit.swift in Sources */,
 				99D5A9A41AD80628001C747A /* FolioReaderPage.swift in Sources */,
 				995B45871AF7D48600F1C6EC /* ioapi.c in Sources */,
@@ -415,6 +455,7 @@
 				99EE55761AFBD759001BE607 /* FolioReaderSidePanelCell.swift in Sources */,
 				E6ECE15C1B58F26C0089E7B9 /* UIWebView+KZ.swift in Sources */,
 				99EE55741AFAAE17001BE607 /* FRSpine.swift in Sources */,
+				E6E969201B5CF2330003F8E4 /* PSAnnotationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
